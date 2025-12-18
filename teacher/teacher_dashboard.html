@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Teacher Dashboard</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/teacher/teacher_dashboard.css" />
+    
+</head>
+<body>
+  <header>Teacher Dashboard</header>
+
+  <div class="container">
+
+    <!-- Academic Period -->
+    <div class="card">
+      <div class="title">Academic Period</div>
+      <div class="grid-4">
+        <div>
+          <label>Term</label>
+          <select id="term"><option value="">Select Term</option><option value="1">Term 1</option><option value="2">Term 2</option><option value="3">Term 3</option></select>
+        </div>
+        <div>
+          <label>Year</label>
+          <select id="year"></select>
+        </div>
+        <div>
+          <label>Exam Type</label>
+          <select id="examType"><option value="">Select Exam Type</option><option>End of Term Exam</option><option>Mid-Term Test</option><option>Assignment</option><option>Project</option><option>Continuous Assessment</option></select>
+        </div>
+        <div>
+          <label>Exam Date</label>
+          <input type="date" id="examDate">
+        </div>
+      </div>
+    </div>
+
+    <!-- Level / Form / Subject -->
+    <div class="card">
+      <div class="title">Level • Form • Subject</div>
+      <div class="grid-3">
+        <div>
+          <label>Level</label>
+          <select id="level"><option value="">Select Level</option><option value="O Level">O Level</option><option value="A Level">A Level</option></select>
+        </div>
+        <div>
+          <label>Form</label>
+          <select id="form"><option value="">Select Form</option><option>Form 1</option><option>Form 2</option><option>Form 3</option><option>Form 4</option><option>Form 5</option><option>Form 6</option></select>
+        </div>
+        <div>
+          <label>Subject</label>
+          <div style="display:flex;gap:8px">
+            <select id="subject" style="flex:1"><option value="">Select Subject</option></select>
+            <button type="button" id="addSubjectBtn" title="Add new subject">+</button>
+          </div>
+          <input id="newSubject" placeholder="Type new subject and press Enter" style="margin-top:8px;display:none">
+        </div>
+      </div>
+    </div>
+
+    <!-- Grading (simple editable thresholds) -->
+    <div class="card">
+      <div class="title">Grading (editable)</div>
+      <div class="grid-4">
+        <div>
+          <label>A From (%)</label>
+          <input type="number" id="gradeAStart" min="0" max="100" value="80">
+        </div>
+        <div>
+          <label>B From (%)</label>
+          <input type="number" id="gradeBStart" min="0" max="100" value="70">
+        </div>
+        <div>
+          <label>C From (%)</label>
+          <input type="number" id="gradeCStart" min="0" max="100" value="60">
+        </div>
+        <div>
+          <label>D From (%)</label>
+          <input type="number" id="gradeDStart" min="0" max="100" value="50">
+        </div>
+      </div>
+    </div>
+
+    <!-- Student search -->
+    <div class="card">
+      <div class="title">Search Student (required before entering marks)</div>
+      <div class="grid-3">
+        <input type="text" id="studentID" placeholder="Student ID (required)">
+        <input type="text" id="studentName" placeholder="Student Name (optional)">
+        <button type="button" id="btnSearch">Search</button>
+      </div>
+      <div style="margin-top:10px"><strong>Found:</strong> <span id="foundStudent" style="color:#374151">None</span></div>
+    </div>
+
+    <!-- Marks entry -->
+    <div class="card">
+      <div class="title">Add / Update Marks</div>
+      <div class="grid-3">
+        <div>
+          <label>Marks (%)</label>
+          <input type="number" id="marks" min="0" max="100" placeholder="0 - 100" />
+        </div>
+        <div>
+          <label>Grade</label>
+          <input type="text" id="calculatedGrade" readonly />
+        </div>
+        <div>
+          <label>Status</label>
+          <input type="text" id="performanceStatus" readonly />
+        </div>
+      </div>
+
+      <div style="margin-top:10px">
+        <label>Teacher's Comment</label>
+        <textarea id="comment" rows="3" placeholder="Optional comment..."></textarea>
+      </div>
+
+      <div style="margin-top:10px">
+        <button id="btnSave">Save Marks</button>
+        <button class="btn-secondary" id="btnClear" style="margin-left:8px">Clear</button>
+      </div>
+    </div>
+
+    <!-- Results table + filters -->
+    <div class="card">
+      <div class="title">Results • Filter & Manage</div>
+      <div style="margin-bottom:8px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <label style="margin-right:6px">Filter Form</label>
+        <select id="filterForm"><option value="">All</option><option>Form 1</option><option>Form 2</option><option>Form 3</option><option>Form 4</option><option>Form 5</option><option>Form 6</option></select>
+        <label style="margin-left:8px">Filter Subject</label>
+        <select id="filterSubject"><option value="">All</option></select>
+        <label style="margin-left:8px">Filter Term</label>
+        <select id="filterTerm"><option value="">All</option><option value="1">Term 1</option><option value="2">Term 2</option><option value="3">Term 3</option></select>
+        <button id="btnApply" style="margin-left:8px">Apply</button>
+      </div>
+
+      <table id="resultsTable">
+        <thead><tr><th>Student ID</th><th>Name</th><th>Form</th><th>Subject</th><th>Term/Year</th><th>Marks</th><th>Grade</th><th>Status</th><th>Comment</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script src="/teacher/teacher_dashboard.js"></script>
+</body>
+</html>

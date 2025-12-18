@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/admin/static/admin_dashboard.css">
+<script src="/admin/static/admin_dashboard.js" defer></script>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>Admin Dashboard</h2>
+
+    <div class="nav">
+        <button onclick="showSection('addStudent')">Add Student</button>
+        <button onclick="showSection('addTeacher')">Add Teacher</button>
+        <button onclick="showSection('viewStudents')">View Students</button>
+        <button onclick="showSection('viewTeachers')">View Teachers</button>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+    <!-- ADD STUDENT -->
+    <div id="addStudent" class="card section">
+        <h2>Add Student</h2>
+
+        <input id="sid" placeholder="Student ID">
+        <input id="name" placeholder="Name">
+        <input id="surname" placeholder="Surname">
+
+        <select id="class">
+            <option value="">Select Class</option>
+            <option>FORM 1</option>
+            <option>FORM 2</option>
+            <option>FORM 3</option>
+            <option>FORM 4</option>
+        </select>
+
+        <input id="phone" placeholder="Phone Number">
+        <input id="attendance" placeholder="Attendance (%)">
+        <input id="age" type="number" placeholder="Age">
+
+        <select id="sex">
+            <option value="">Select Sex</option>
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+
+        <button class="save" onclick="saveStudent()">Save Student</button>
+    </div>
+
+
+    <!-- ADD TEACHER -->
+    <div id="addTeacher" class="card section" style="display:none;">
+        <h2>Add Teacher</h2>
+
+        <input id="tid" placeholder="Teacher ID">
+        <input id="tname" placeholder="Name">
+        <input id="tsurname" placeholder="Surname">
+
+        <select id="tclass">
+            <option value="">Select Class</option>
+            <option>FORM 1</option>
+            <option>FORM 2</option>
+            <option>FORM 3</option>
+            <option>FORM 4</option>
+            <option>FORM 5</option>
+            <option>FORM 6</option>
+        </select>
+
+        <input id="tphone" placeholder="Phone Number">
+        <input id="tpass" type="password" placeholder="Password">
+
+        <select id="trole">
+            <option value="">Select Role</option>
+            <option>O LEVEL</option>
+            <option>A LEVEL</option>
+            <option>ADMIN</option>
+        </select>
+
+        <button class="save" onclick="saveTeacher()">Save Teacher</button>
+    </div>
+
+
+    <!-- VIEW STUDENTS -->
+    <div id="viewStudents" class="card section" style="display:none;">
+        <h2>Student List</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th><th>Name</th><th>Surname</th><th>Class</th>
+                    <th>Phone</th><th>Attendance</th><th>Age</th><th>Sex</th><th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="studentTable"></tbody>
+        </table>
+    </div>
+
+
+    <!-- VIEW TEACHERS -->
+    <div id="viewTeachers" class="card section" style="display:none;">
+        <h2>Teachers List</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th><th>Name</th><th>Surname</th><th>Class</th>
+                    <th>Phone</th><th>Password</th><th>Role</th><th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="teacherTable"></tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

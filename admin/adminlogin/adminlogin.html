@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - Login</title>
+    <link rel="stylesheet" href="/admin/adminlogin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-container">
+            <h1><i class="fas fa-user-shield"></i> Administrator Login</h1>
+
+            <form id="adminLoginForm">
+                <div class="input-group">
+                    <label>Admin ID</label>
+                    <input type="text" id="adminId" placeholder="Enter Admin ID" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+            </form>
+
+            <div id="error" class="error"></div>
+            <div id="loading" class="loading">Verifying...</div>
+        </div>
+    </div>
+    <script src="/admin/adminlogin.js"></script>
+</body>
+</html>

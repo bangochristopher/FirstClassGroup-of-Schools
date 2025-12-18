@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - View Results</title>
+    <!-- In the <head> section, make sure paths are correct -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* (same styles as before — omitted for brevity in this preview) */
+        /* If you want the exact same styling keep the original CSS from your uploaded student_dashboard.html */
+        :root{--primary:#1e3a8a;--primary-light:#3b82f6;--secondary:#10b981;--danger:#ef4444;--warning:#f59e0b;--dark:#1f2937;--light:#f8fafc;--gray:#6b7280;--border:#e5e7eb}
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif}
+        body{background:#f4f6f9;color:var(--dark);line-height:1.6}
+        .header{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+        .logo{display:flex;align-items:center;gap:12px}.logo i{font-size:2rem}.logo h1{font-size:1.8rem;font-weight:700}
+        .student-info{display:flex;align-items:center;gap:1.5rem}
+        .student-avatar{width:50px;height:50px;border-radius:50%;background:#fff;color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;border:3px solid rgba(255,255,255,.3)}
+        .logout-btn{background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3);padding:8px 20px;border-radius:30px;cursor:pointer;font-weight:600}
+        .container{max-width:1400px;margin:2rem auto;padding:0 2rem;display:grid;grid-template-columns:280px 1fr;gap:2rem}
+        .sidebar{background:#fff;border-radius:15px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,.05);height:fit-content}
+        .sidebar-menu{list-style:none}.sidebar-menu a{display:flex;align-items:center;gap:12px;padding:14px 16px;color:var(--dark);text-decoration:none;border-radius:10px;font-weight:500}
+        .sidebar-menu a.active{background:#e0f2fe;color:var(--primary);font-weight:600}
+        .main-content{display:flex;flex-direction:column;gap:2rem}
+        .dashboard-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+        .card{background:#fff;border-radius:15px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,.05)}
+        .card-value{font-size:2rem;font-weight:700;margin-bottom:.5rem}
+        .results-section{background:#fff;border-radius:15px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,.05)}
+        .results-table{width:100%;border-collapse:collapse;margin-top:1rem}
+        .results-table th{background:#f8fafc;padding:15px;text-align:left;font-weight:600;color:var(--dark);border-bottom:2px solid var(--border)}
+        .results-table td{padding:15px;border-bottom:1px solid var(--border)}
+        .grade-badge{display:inline-block;padding:5px 12px;border-radius:20px;font-weight:600;font-size:.85rem}
+        .status-badge{display:inline-block;padding:5px 12px;border-radius:20px;font-weight:600;font-size:.85rem}
+        .chart-container{background:#fff;border-radius:15px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,.05);height:350px}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <h1>Student Portal</h1>
+        </div>
+        <div class="student-info">
+            <div class="student-avatar" id="studentInitials">JD</div>
+            <div class="student-details">
+                <h3 id="studentFullName">Student Name</h3>
+                <p id="studentID">ID | Class</p>
+            </div>
+            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active" onclick="showTab('dashboard')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#" onclick="showTab('current-results')"><i class="fas fa-chart-line"></i> Current Results</a></li>
+                <li><a href="#" onclick="showTab('past-results')"><i class="fas fa-history"></i> Past Results</a></li>
+                <li><a href="#" onclick="showTab('performance')"><i class="fas fa-chart-bar"></i> Performance</a></li>
+                <li><a href="#" onclick="showTab('profile')"><i class="fas fa-user"></i> My Profile</a></li>
+                <li><a href="#" onclick="showTab('help')"><i class="fas fa-question-circle"></i> Help & Support</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div id="dashboard" class="tab-content active">
+                <div class="section-header">
+                    <h2 class="section-title">Student Dashboard</h2>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="printResults()"><i class="fas fa-print"></i> Print Results</button>
+                        <button class="btn btn-success" onclick="downloadResults()"><i class="fas fa-download"></i> Download PDF</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <div class="card-header"><h3 class="card-title">Current Average</h3><div class="card-icon icon-blue"><i class="fas fa-percentage"></i></div></div>
+                        <div class="card-value" id="currentAverage">-</div>
+                        <p class="card-subtitle">Overall performance</p>
+                        <div class="progress-bar"><div id="avgProgress" class="progress-fill progress-high" style="width:0%"></div></div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><h3 class="card-title">Best Subject</h3><div class="card-icon icon-green"><i class="fas fa-medal"></i></div></div>
+                        <div class="card-value" id="bestSubject">-</div>
+                        <p class="card-subtitle" id="bestSubjectScore">Score: -</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><h3 class="card-title">Weakest Subject</h3><div class="card-icon icon-red"><i class="fas fa-exclamation-triangle"></i></div></div>
+                        <div class="card-value" id="weakestSubject">-</div>
+                        <p class="card-subtitle" id="weakestSubjectScore">Score: -</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><h3 class="card-title">Passed / Failed</h3><div class="card-icon icon-orange"><i class="fas fa-user-check"></i></div></div>
+                        <div class="card-value" id="passFail">-</div>
+                        <p class="card-subtitle">Subjects Passed / Failed</p>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Latest Results</h2>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="results-table" id="resultsTable">
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Marks (%)</th>
+                                    <th>Grade</th>
+                                    <th>Term</th>
+                                    <th>Year</th>
+                                    <th>Status</th>
+                                    <th>Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="performance" class="tab-content">
+                <div class="section-header"><h2 class="section-title">Performance Analytics</h2></div>
+                <div class="chart-container"><canvas id="performanceChart"></canvas></div>
+            </div>
+
+            <div id="profile" class="tab-content" style="display:none">
+                <div class="results-section">
+                    <h3>Profile</h3>
+                    <p id="profileInfo">-</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer style="text-align:center;padding:1rem;color:#666">&copy; Student Portal</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Utility: get query param
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        // Entry point
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Determine student id: from query param ?studentId= or fallback to stored value or prompt (for demo)
+            let studentId = getQueryParam('studentId') || localStorage.getItem('studentId');
+            if (!studentId) {
+                studentId = prompt('Enter Student ID to load dashboard (for demo):', 'ST2023001');
+                if (!studentId) return; // user cancelled
+                localStorage.setItem('studentId', studentId);
+            }
+
+            // Set header placeholders while fetching
+            document.getElementById('studentFullName').textContent = 'Loading...';
+            document.getElementById('studentID').textContent = studentId;
+            document.getElementById('studentInitials').textContent = studentId.slice(0,2).toUpperCase();
+
+            try {
+                const res = await fetch(`/student_results/${encodeURIComponent(studentId)}`);
+                if (!res.ok) throw new Error(`Server returned ${res.status}`);
+                const data = await res.json();
+
+                const results = data.results || [];
+                const stats = data.statistics || {};
+
+                // Header
+                const studentName = results.length ? results[0].student_name : (localStorage.getItem('studentName') || 'Student');
+                document.getElementById('studentFullName').textContent = studentName;
+                document.getElementById('studentID').textContent = `${studentId}`;
+                document.getElementById('studentInitials').textContent = studentName.split(' ').map(n=>n[0]||'').slice(0,2).join('').toUpperCase();
+
+                // Cards
+                document.getElementById('currentAverage').textContent = stats.average !== undefined ? `${stats.average}%` : '-';
+                document.getElementById('avgProgress').style.width = (stats.average || 0) + '%';
+                document.getElementById('bestSubject').textContent = stats.bestSubject || '-';
+                document.getElementById('bestSubjectScore').textContent = `Score: ${stats.bestScore || '-'}%`;
+                document.getElementById('weakestSubject').textContent = stats.weakestSubject || '-';
+                document.getElementById('weakestSubjectScore').textContent = `Score: ${stats.weakestScore || '-'}%`;
+                document.getElementById('passFail').textContent = `${stats.passed || 0} / ${stats.failed || 0}`;
+
+                // Fill results table
+                const tbody = document.getElementById('resultsBody');
+                tbody.innerHTML = '';
+
+                if (results.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:#666;padding:2rem">No results available.</td></tr>`;
+                } else {
+                    // Sort by year desc, term desc
+                    results.sort((a,b)=> (b.year - a.year) || (b.term.localeCompare(a.term)) || (new Date(b.created_at || 0) - new Date(a.created_at || 0)) );
+                    results.forEach(r => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${r.subject || ''}</td>
+                            <td>${r.marks != null ? r.marks + '%' : '-'}</td>
+                            <td><span class="grade-badge">${r.grade || '-'}</span></td>
+                            <td>${r.term || '-'}</td>
+                            <td>${r.year || '-'}</td>
+                            <td><span class="status-badge">${r.status || '-'}</span></td>
+                            <td>${r.comment || ''}</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                }
+
+                // Build performance chart data: group by year-term -> average marks
+                const grouped = {}; // key = `${year} - ${term}`
+                results.forEach(r => {
+                    const key = `${r.year} - ${r.term}`;
+                    if (!grouped[key]) grouped[key] = {sum:0, count:0};
+                    grouped[key].sum += (r.marks || 0);
+                    grouped[key].count += 1;
+                });
+
+                const labels = Object.keys(grouped).sort();
+                const chartData = labels.map(k => Math.round(grouped[k].sum / grouped[k].count * 100) / 100);
+
+                // If no grouped data, create a small fallback from the latest results
+                const chartLabels = labels.length ? labels : (results.length ? [ `${results[0].year} - ${results[0].term}` ] : []);
+                const chartValues = chartData.length ? chartData : (results.length ? [results[0].marks] : []);
+
+                renderPerformanceChart(chartLabels, chartValues);
+
+            } catch (err) {
+                console.error('Error loading student results:', err);
+                alert('Failed to load student results. See console for details.');
+                document.getElementById('resultsBody').innerHTML = `<tr><td colspan="7" style="text-align:center;color:#d00;padding:2rem">Error loading results.</td></tr>`;
+            }
+        });
+
+        // Chart rendering
+        let perfChart = null;
+        function renderPerformanceChart(labels, values) {
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            if (perfChart) perfChart.destroy();
+            perfChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Average Marks',
+                        data: values,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {responsive:true, maintainAspectRatio:false}
+            });
+        }
+
+        // Simple tab handler
+        function showTab(id) {
+            document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+            const el = document.getElementById(id);
+            if (el) el.style.display = '';
+        }
+
+        // Print/download placeholders
+        function printResults(){ window.print(); }
+        function downloadResults(){ alert('Download feature - server-side export recommended'); }
+
+        function logout(){ localStorage.removeItem('studentId'); alert('Logged out (demo)'); location.href = '/student'; }
+    </script>
+</body>
+</html>

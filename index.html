@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIRST CLASS GROUP OF SCHOOLS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .logo-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0 20px;
+        }
+
+        /* Stats Cards */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .stat-1 .stat-icon {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+        }
+
+        .stat-2 .stat-icon {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        }
+
+        .stat-3 .stat-icon {
+            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+        }
+
+        .stat-4 .stat-icon {
+            background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+        }
+
+        .stat-info h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-info p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .stat-subtitle {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 5px;
+        }
+
+        /* Portal Cards */
+        .portals-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .portal-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+        }
+
+        .portal-header {
+            padding: 40px 30px 30px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portal-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        .student-portal .portal-header {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+        }
+
+        .teacher-portal .portal-header {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        }
+
+        .admin-portal .portal-header {
+            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+        }
+
+        .portal-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            margin: 0 auto 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .portal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .portal-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .portal-content {
+            padding: 30px;
+        }
+
+        .portal-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .portal-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #555;
+        }
+
+        .portal-features li:last-child {
+            border-bottom: none;
+        }
+
+        .portal-features i {
+            color: #4CAF50;
+            width: 20px;
+        }
+
+        .teacher-portal .portal-features i {
+            color: #2196F3;
+        }
+
+        .admin-portal .portal-features i {
+            color: #FF9800;
+        }
+
+        .portal-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .student-portal .portal-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+        }
+
+        .teacher-portal .portal-btn {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        }
+
+        .admin-portal .portal-btn {
+            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+        }
+
+        .portal-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            padding-top: 50px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+            opacity: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .portals-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .portals-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text h1 {
+                font-size: 2rem;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header animate-fade-in-up">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>FIRST CLASS GROUP OF SCHOOLS</h1>
+                    <p>Comprehensive Academic Management Platform</p>
+                </div>
+            </div>
+            <p class="tagline">
+                Streamlining educational administration, student tracking, and academic performance monitoring 
+                for efficient school management
+            </p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-container">
+            <div class="stat-card stat-1 animate-fade-in-up delay-1">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="studentCount">...</h3>
+                    <p>Active Students</p>
+                    <div class="stat-subtitle" id="studentSubtitle">Loading...</div>
+                </div>
+            </div>
+            
+            <div class="stat-card stat-2 animate-fade-in-up delay-1">
+                <div class="stat-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="teacherCount">...</h3>
+                    <p>Teaching Staff</p>
+                    <div class="stat-subtitle" id="teacherSubtitle">Loading...</div>
+                </div>
+            </div>
+            
+            <div class="stat-card stat-3 animate-fade-in-up delay-2">
+                <div class="stat-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="subjectCount">...</h3>
+                    <p>Subjects Offered</p>
+                    <div class="stat-subtitle" id="subjectSubtitle">Loading...</div>
+                </div>
+            </div>
+            
+            <div class="stat-card stat-4 animate-fade-in-up delay-2">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="uptimePercent">...</h3>
+                    <p>System Uptime</p>
+                    <div class="stat-subtitle" id="uptimeSubtitle">Loading...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portal Cards -->
+        <div class="portals-container">
+            <!-- Student Portal -->
+            <div class="portal-card student-portal animate-fade-in-up delay-1">
+                <div class="portal-header">
+                    <div class="portal-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h2 class="portal-title">Student Portal</h2>
+                    <p class="portal-subtitle">Access academic records and results</p>
+                </div>
+                <div class="portal-content">
+                    <ul class="portal-features">
+                        <li><i class="fas fa-check"></i> View exam results and grades</li>
+                        <li><i class="fas fa-check"></i> Track academic performance</li>
+                        <li><i class="fas fa-check"></i> Access subject materials</li>
+                        <li><i class="fas fa-check"></i> View attendance records</li>
+                        <li><i class="fas fa-check"></i> Download report cards</li>
+                    </ul>
+                    <a href="/student" class="portal-btn">
+                        <i class="fas fa-sign-in-alt"></i> Enter Student Portal
+                    </a>
+                </div>
+            </div>
+
+            <!-- Teacher Portal -->
+            <div class="portal-card teacher-portal animate-fade-in-up delay-2">
+                <div class="portal-header">
+                    <div class="portal-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h2 class="portal-title">Teacher Portal</h2>
+                    <p class="portal-subtitle">Manage classes and student progress</p>
+                </div>
+                <div class="portal-content">
+                    <ul class="portal-features">
+                        <li><i class="fas fa-check"></i> Enter student marks</li>
+                        <li><i class="fas fa-check"></i> Manage class schedules</li>
+                        <li><i class="fas fa-check"></i> Generate progress reports</li>
+                        <li><i class="fas fa-check"></i> Track student attendance</li>
+                        <li><i class="fas fa-check"></i> Upload teaching materials</li>
+                    </ul>
+                    <a href="/teacher" class="portal-btn">
+                        <i class="fas fa-sign-in-alt"></i> Enter Teacher Portal
+                    </a>
+                </div>
+            </div>
+
+            <!-- Admin Portal -->
+            <div class="portal-card admin-portal animate-fade-in-up delay-3">
+                <div class="portal-header">
+                    <div class="portal-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h2 class="portal-title">Admin Portal</h2>
+                    <p class="portal-subtitle">System administration and management</p>
+                </div>
+                <div class="portal-content">
+                    <ul class="portal-features">
+                        <li><i class="fas fa-check"></i> Manage user accounts</li>
+                        <li><i class="fas fa-check"></i> System configuration</li>
+                        <li><i class="fas fa-check"></i> Database management</li>
+                        <li><i class="fas fa-check"></i> Generate system reports</li>
+                        <li><i class="fas fa-check"></i> Backup and restore</li>
+                    </ul>
+                    <a href="/admin" class="portal-btn">
+                        <i class="fas fa-sign-in-alt"></i> Enter Admin Portal
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer animate-fade-in-up delay-3">
+            <div class="footer-links">
+                <span>© 2026 School Management System v2.0</span>
+                <span id="currentDateTime"></span>
+            </div>
+            <p class="copyright">
+                Developed by ICT Department | All rights reserved
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Fetch real statistics from server
+        async function fetchStatistics() {
+            try {
+                const response = await fetch('/api/statistics');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const stats = data.statistics;
+                    
+                    // Animate counts
+                    animateCount('studentCount', stats.students);
+                    animateCount('teacherCount', stats.teachers);
+                    animateCount('subjectCount', stats.subjects);
+                    
+                    // Update uptime
+                    document.getElementById('uptimePercent').textContent = stats.uptime;
+                    document.getElementById('uptimeSubtitle').textContent = `Server running: ${stats.uptime_hours}`;
+                    
+                    // Update subtitles
+                    document.getElementById('studentSubtitle').textContent = 'Active in database';
+                    document.getElementById('teacherSubtitle').textContent = 'Registered staff';
+                    document.getElementById('subjectSubtitle').textContent = 'Unique subjects';
+                    
+                    showNotification('Statistics loaded successfully!', 'success');
+                } else {
+                    // Use fallback data
+                    const stats = data.statistics;
+                    
+                    animateCount('studentCount', stats.students);
+                    animateCount('teacherCount', stats.teachers);
+                    animateCount('subjectCount', stats.subjects);
+                    
+                    document.getElementById('uptimePercent').textContent = stats.uptime;
+                    document.getElementById('uptimeSubtitle').textContent = `Server running: ${stats.uptime_hours}`;
+                    
+                    document.getElementById('studentSubtitle').textContent = 'Using fallback data';
+                    document.getElementById('teacherSubtitle').textContent = 'Using fallback data';
+                    document.getElementById('subjectSubtitle').textContent = 'Using fallback data';
+                    
+                    showNotification('Using cached statistics', 'warning');
+                }
+                
+            } catch (error) {
+                console.error('Error fetching statistics:', error);
+                
+                // Set fallback values
+                document.getElementById('studentCount').textContent = '0';
+                document.getElementById('teacherCount').textContent = '0';
+                document.getElementById('subjectCount').textContent = '15';
+                document.getElementById('uptimePercent').textContent = '99.9%';
+                document.getElementById('uptimeSubtitle').textContent = 'Server running: 0h';
+                
+                document.getElementById('studentSubtitle').textContent = 'Database empty';
+                document.getElementById('teacherSubtitle').textContent = 'Database empty';
+                document.getElementById('subjectSubtitle').textContent = 'Default value';
+                
+                showNotification('Failed to load statistics', 'error');
+            }
+        }
+
+        // Animate number counting
+        function animateCount(elementId, target) {
+            const element = document.getElementById(elementId);
+            const duration = 1000;
+            const steps = 30;
+            const increment = target / steps;
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString();
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString();
+                }
+            }, duration / steps);
+        }
+
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#4CAF50' : type === 'warning' ? '#FF9800' : '#f44336'};
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            `;
+            
+            const icon = type === 'success' ? 'fa-check-circle' : type === 'warning' ? 'fa-exclamation-triangle' : 'fa-times-circle';
+            
+            notification.innerHTML = `
+                <i class="fas ${icon}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Set current date and time
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            document.getElementById('currentDateTime').textContent = now.toLocaleDateString('en-US', options);
+        }
+
+        // Add CSS for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update date time
+            updateDateTime();
+            setInterval(updateDateTime, 60000);
+            
+            // Fetch statistics
+            fetchStatistics();
+            
+            // Auto-refresh statistics every 30 seconds
+            setInterval(fetchStatistics, 30000);
+            
+            // Add ripple effect to buttons
+            const buttons = document.querySelectorAll('.portal-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, 0.7);
+                        transform: scale(0);
+                        animation: ripple 0.6s linear;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        pointer-events: none;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            if (event.altKey && event.key === 's') {
+                event.preventDefault();
+                window.location.href = '/student';
+            }
+            if (event.altKey && event.key === 't') {
+                event.preventDefault();
+                window.location.href = '/teacher';
+            }
+            if (event.altKey && event.key === 'a') {
+                event.preventDefault();
+                window.location.href = '/admin';
+            }
+        });
+
+        // Show keyboard shortcut hint
+        window.onload = function() {
+            setTimeout(() => {
+                showNotification('💡 Tip: Use Alt+S, Alt+T, Alt+A for quick navigation!', 'info');
+            }, 2000);
+        };
+    </script>
+</body>
+</html>

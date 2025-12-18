@@ -1,0 +1,104 @@
+:root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --accent: #6366f1;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: #111827;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.nav button {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0;
+    background: transparent;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    color: var(--text);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.nav button:hover {
+    background: var(--accent);
+}
+
+.main {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 12px;
+    background: #334155;
+    color: white;
+}
+
+button.save {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #334155;
+    text-align: left;
+}
+
+.action-btn {
+    padding: 6px 10px;
+    background: var(--accent);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 4px;
+}
+
+.delete-btn {
+    background: #dc2626;
+}

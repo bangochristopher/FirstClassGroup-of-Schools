@@ -1,0 +1,369 @@
+/* Admin Login Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.back-button {
+    margin-bottom: 20px;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-5px);
+}
+
+.login-container {
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border: 2px solid #333;
+}
+
+.security-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.security-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: white;
+    font-size: 40px;
+    border: 3px solid #fff;
+    box-shadow: 0 0 20px rgba(244, 67, 54, 0.5);
+}
+
+.security-header h1 {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.security-level {
+    color: #ff9800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.security-notice {
+    background: #ff9800;
+    color: #333;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.security-notice i {
+    font-size: 18px;
+    margin-top: 2px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.input-group label i {
+    color: #f44336;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    background: #2a2a2a;
+    border: 2px solid #444;
+    border-radius: 10px;
+    font-size: 16px;
+    color: white;
+    transition: all 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #f44336;
+    box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.2);
+}
+
+.input-group input::placeholder {
+    color: #888;
+}
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 4px;
+    font-size: 18px;
+}
+
+.two-factor-section {
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 25px 0;
+    border-left: 4px solid #ff9800;
+}
+
+.code-input-container {
+    display: flex;
+    gap: 10px;
+}
+
+.code-input-container input {
+    flex: 1;
+}
+
+.btn-get-code {
+    padding: 0 20px;
+    background: #444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.btn-get-code:hover {
+    background: #555;
+}
+
+.hint {
+    display: block;
+    margin-top: 8px;
+    color: #888;
+    font-size: 12px;
+}
+
+.security-options {
+    margin: 20px 0;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #ddd;
+    margin: 10px 0;
+}
+
+.checkbox input {
+    width: 16px;
+    height: 16px;
+}
+
+.btn {
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(244, 67, 54, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.loading {
+    display: none;
+    text-align: center;
+    padding: 10px;
+    margin: 20px 0;
+}
+
+.loading.active {
+    display: block;
+}
+
+.spinner {
+    border: 3px solid #333;
+    border-top: 3px solid #f44336;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.message {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    display: none;
+}
+
+.message.error {
+    background: #5a1a1a;
+    color: #ff6b6b;
+    border: 1px solid #7a1a1a;
+    display: block;
+}
+
+.emergency-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.emergency-link {
+    color: #ff9800;
+    text-decoration: none;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    background: #2a2a2a;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.emergency-link:hover {
+    background: #333;
+    text-decoration: underline;
+}
+
+.audit-info {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    color: #888;
+    font-size: 12px;
+}
+
+.audit-info p {
+    margin: 5px 0;
+}
+
+.audit-info .timestamp {
+    font-family: monospace;
+    color: #4CAF50;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    color: white;
+    font-size: 12px;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.copyright {
+    opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+    }
+    
+    .code-input-container {
+        flex-direction: column;
+    }
+    
+    .btn-get-code {
+        padding: 10px;
+    }
+}
